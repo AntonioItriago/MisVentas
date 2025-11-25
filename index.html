@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú MisVentas AntonioItriago</title>
     <style>
-        /* [Se omite el CSS por brevedad] */
+        /* ==================================== */
+        /* ESTILOS CSS BASE */
+        /* ==================================== */
         body { 
             font-family: 'Arial', sans-serif; 
+            /* --- FONDO DE PANTALLA (Actualiza esta línea con tu imagen) --- */
             background-image: url('fondo_carbon.jpg'); 
             background-size: cover; 
             background-attachment: fixed; 
@@ -17,43 +20,239 @@
             padding: 20px; 
             color: #333;
         }
-        .main-container { max-width: 500px; margin: 0 auto; }
-        h1, h2 { text-align: center; color: #d9534f; text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); }
-        .brand-header { display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background-color: rgba(255, 255, 255, 0.9); padding: 10px; border-radius: 10px; }
-        .brand-logo { height: 50px; margin-right: 10px; vertical-align: middle; }
-        .brand-name { font-size: 1.5em; font-weight: bold; color: #d9534f; margin: 0; text-align: center; }
-        .header-carrito { display: flex; justify-content: flex-end; align-items: center; padding: 10px 0; font-weight: bold; }
-        #contador-carrito { background: #d9534f; color: white; border-radius: 50%; padding: 4px 8px; font-weight: bold; font-size: 12px; margin-left: 5px; }
-        #carrusel-categorias, #detalle-carrito { background-color: rgba(255, 255, 255, 0.95); border-radius: 8px; padding: 15px; margin-top: 15px; position: relative; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.2); min-height: 200px; }
-        .categoria-pagina { display: none; width: 100%; }
-        .categoria-pagina.activa { display: block; }
-        .categoria-pagina h3 { text-align: center; color: #333; border-bottom: 2px solid #ffc107; padding-bottom: 5px; margin: 0 0 15px 0; font-size: 1.5em; }
-        .nav-categoria-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.6); color: white; border: none; padding: 8px 12px; cursor: pointer; z-index: 20; font-size: 18px; border-radius: 5px; transition: background-color 0.2s; }
-        .nav-categoria-btn:hover { background-color: rgba(0, 0, 0, 0.8); }
+        .main-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        h1, h2 { 
+            text-align: center; 
+            color: #d9534f;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+        
+        /* --- NUEVO ESTILO PARA LA TASA BCV EN EL HEADER --- */
+        #tasa-bcv-display {
+            background-color: #ffc107; /* Amarillo */
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        /* --- ESTILOS DEL ENCABEZADO Y LOGO --- */
+        .brand-header {
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-bottom: 20px; 
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .brand-logo {
+            height: 50px; 
+            margin-right: 10px; 
+            vertical-align: middle; 
+        }
+        .brand-name {
+            font-size: 1.5em; 
+            font-weight: bold;
+            color: #d9534f; 
+            margin: 0; 
+            text-align: center;
+        }
+        /* Estilos de Carrito en el Encabezado */
+        .header-carrito { 
+            display: flex; 
+            justify-content: flex-end; 
+            align-items: center; 
+            padding: 10px 0; 
+            font-weight: bold;
+        }
+        #contador-carrito { 
+            background: #d9534f; 
+            color: white; 
+            border-radius: 50%; 
+            padding: 4px 8px; 
+            font-weight: bold; 
+            font-size: 12px; 
+            margin-left: 5px; 
+        }
+
+        /* --- ESTILOS DEL CARRUSEL DE CATEGORÍAS --- */
+        #carrusel-categorias, #detalle-carrito {
+            background-color: rgba(255, 255, 255, 0.95); 
+            border-radius: 8px;
+            padding: 15px; 
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            min-height: 200px;
+        }
+        .categoria-pagina {
+            display: none;
+            width: 100%;
+        }
+        .categoria-pagina.activa {
+            display: block;
+        }
+        .categoria-pagina h3 {
+            text-align: center;
+            color: #333;
+            border-bottom: 2px solid #ffc107;
+            padding-bottom: 5px;
+            margin: 0 0 15px 0;
+            font-size: 1.5em;
+        }
+        
+        /* Controles de navegación del carrusel de categorías */
+        .nav-categoria-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            z-index: 20;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+        .nav-categoria-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
         #prevCategoriaBtn { left: 5px; }
         #nextCategoriaBtn { right: 5px; }
-        #carrusel-categorias.loading-state { text-align: center; padding: 50px; font-size: 1.2em; color: #666; }
-        .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px dashed #eee; }
-        .menu-item:last-child { border-bottom: none; }
-        .menu-item-info { flex-grow: 1; padding-right: 10px; display: flex; align-items: center; }
-        .item-thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 6px; margin-right: 10px; border: 1px solid #ddd; }
-        .item-text { flex-grow: 1; }
-        .item-text strong { display: block; font-size: 1.1em; color: #d9534f; }
-        .item-text span { font-size: 0.9em; color: #666; }
-        .item-carrito-controls { display: flex; align-items: center; min-width: 100px; }
-        .item-carrito-controls button { background-color: #d9534f; color: white; border: none; width: 30px; height: 30px; border-radius: 4px; cursor: pointer; margin: 0 5px; font-weight: bold; }
-        .item-carrito-controls span { font-weight: bold; padding: 0 5px; min-width: 15px; text-align: center; }
-        .btn-add { background-color: #5cb85c !important; padding: 8px 12px !important; border-radius: 4px !important; width: auto !important; height: auto !important; font-size: 1em !important; margin: 0; }
+        #carrusel-categorias.loading-state {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        /* --- ESTILOS DEL MENÚ ITEM CON IMAGEN --- */
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .menu-item-info {
+            flex-grow: 1;
+            padding-right: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .item-thumb {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+        }
+        .item-text {
+            flex-grow: 1;
+        }
+        .item-text strong {
+            display: block;
+            font-size: 1.1em;
+            color: #d9534f;
+        }
+        .item-text span {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        /* Controles de cantidad (Añadir/Quitar) */
+        .item-carrito-controls {
+             display: flex; 
+             align-items: center;
+             min-width: 100px;
+        }
+        .item-carrito-controls button {
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0 5px;
+            font-weight: bold;
+        }
+        .item-carrito-controls span {
+            font-weight: bold;
+            padding: 0 5px;
+            min-width: 15px;
+            text-align: center;
+        }
+        /* Botón Añadir para ítems sin cantidad */
+        .btn-add {
+            background-color: #5cb85c !important; 
+            padding: 8px 12px !important;
+            border-radius: 4px !important;
+            width: auto !important;
+            height: auto !important;
+            font-size: 1em !important;
+            margin: 0;
+        }
+
+        /* --- VISTA DEL CARRO --- */
         #detalle-carrito ul { list-style: none; padding: 0; }
-        .item-carrito { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px; }
-        #btn-finalizar { display: block; width: 100%; padding: 15px; background-color: #25d366; color: white; border: none; border-radius: 5px; font-size: 1.1em; font-weight: bold; cursor: pointer; margin-top: 20px; transition: background-color 0.2s; }
-        #btn-finalizar:hover { background-color: #128c7e; }
-        .footer-note { text-align: center; font-size: 0.8em; margin-top: 15px; color: white; text-shadow: 1px 1px 2px #333; }
+        .item-carrito { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 10px; 
+            border-bottom: 1px dotted #eee; 
+            padding-bottom: 5px; 
+        }
+        
+        #btn-finalizar {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #25d366; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.2s;
+        }
+        #btn-finalizar:hover {
+            background-color: #128c7e;
+        }
+        
+        .footer-note {
+            text-align: center; 
+            font-size: 0.8em; 
+            margin-top: 15px;
+            color: white;
+            text-shadow: 1px 1px 2px #333;
+        }
     </style>
 </head>
 <body>
 
 <div class="main-container">
+
+    <div id="tasa-bcv-display">
+        Cargando Tasa BCV...
+    </div>
 
     <div class="header-carrito">
         🛒 **Tu Carrito** <span id="contador-carrito">0</span>
@@ -84,7 +283,7 @@
     </button>
     
     <p class="footer-note">
-        *La Tasa BCV (obtenida por API) y el precio final de delivery serán confirmados al enviar el pedido.
+        *La Tasa BCV y el precio final de delivery serán confirmados al enviar el pedido.
     </p>
 
 </div>
@@ -123,39 +322,47 @@
         carrito: document.getElementById('detalle-carrito'),
         contador: document.getElementById('contador-carrito'),
         prevBtn: document.getElementById('prevCategoriaBtn'),
-        nextBtn: document.getElementById('nextCategoriaBtn')
+        nextBtn: document.getElementById('nextCategoriaBtn'),
+        tasaDisplay: document.getElementById('tasa-bcv-display') // Nuevo elemento
     };
     
     // ===========================================
     // FUNCIONES PRINCIPALES DE FETCH Y RENDERIZADO
     // ===========================================
 
-    // FUNCIÓN ACTUALIZADA: Obtiene la tasa de la nueva API (dolarapi.com)
+    // FUNCIÓN ACTUALIZADA: Obtiene la tasa BCV y la muestra en pantalla
     async function fetchTasaBCV() {
+        secciones.tasaDisplay.textContent = 'Buscando Tasa BCV...';
         try {
+            // Se usa la URL guardada del usuario para BCV: 'https://www.bcv.org.ve/'
+            // y la API proxy para obtener el valor: BCV_API_URL
             const response = await fetch(BCV_API_URL, { cache: 'no-store' }); 
             if (!response.ok) throw new Error(`API error! status: ${response.status}`);
             
             const data = await response.json();
             
-            // La nueva API retorna la tasa BCV bajo la ruta: data.dolarbcv.promedio
             if (data && data.dolarbcv && data.dolarbcv.promedio) {
                 TASA_BCV_HOY = parseFloat(data.dolarbcv.promedio);
                 
-                // NOTA: Se actualiza la información guardada del usuario.
+                // 🇻🇪 Actualiza el valor en la parte superior de la pantalla
+                secciones.tasaDisplay.innerHTML = `🇻🇪 Tasa BCV: **1 USD = ${TASA_BCV_HOY.toFixed(4)} Bs**`;
+                
+                // Actualiza la información guardada del usuario.
                 console.log(`Tasa BCV actualizada exitosamente a: ${TASA_BCV_HOY}`);
                 
             } else {
                 console.warn("API de DolarAPI no devolvió la tasa BCV esperada. Usando valor de respaldo.");
+                secciones.tasaDisplay.innerHTML = `⚠️ Tasa BCV (Respaldo): **1 USD = ${TASA_BCV_HOY.toFixed(4)} Bs**`;
             }
         } catch (error) {
             console.error("Error al obtener la tasa BCV por API:", error);
             // Si la API falla, se mantiene TASA_BCV_HOY en su valor de respaldo.
+            secciones.tasaDisplay.innerHTML = `❌ Error Tasa BCV: Usando respaldo **${TASA_BCV_HOY.toFixed(4)} Bs**`;
         }
     }
 
     async function fetchDataAndRender() {
-        // 1. Obtener la tasa BCV de la API
+        // 1. Obtener la tasa BCV de la API y mostrarla
         await fetchTasaBCV(); 
 
         // 2. Cargar y renderizar el menú
@@ -186,10 +393,10 @@
         if (lineas.length === 0) return;
 
         // Limpiamos los encabezados y los convertimos a minúsculas
-        const encabezados = lineas[0].replace(/\r/g, '').split(CSV_SEPARATOR).map(h => h.trim().toLowerCase()); // <--- ¡CAMBIO AQUÍ!
+        const encabezados = lineas[0].replace(/\r/g, '').split(CSV_SEPARATOR).map(h => h.trim().toLowerCase()); 
         
         // Encontramos el índice de la columna 'price' para aplicar la corrección de decimales
-        const precioIndex = encabezados.indexOf('price'); // <--- ¡CAMBIO AQUÍ!
+        const precioIndex = encabezados.indexOf('price'); 
 
         for (let i = 1; i < lineas.length; i++) {
             const valores = lineas[i].replace(/\r/g, '').split(CSV_SEPARATOR).map(v => v.trim());
@@ -201,13 +408,13 @@
             }
             
             // --- CORRECCIÓN DE DECIMALES (COMAS A PUNTOS) ---
-            let precioProcesado = producto.price; // <--- ¡CAMBIO AQUÍ!
+            let precioProcesado = producto.price; 
             if (precioIndex !== -1 && valores[precioIndex] && valores[precioIndex].includes(',')) {
                 precioProcesado = valores[precioIndex].replace(',', '.');
             }
             // -----------------------------------------------
             
-            // Mapeo de columnas usando los nombres en minúsculas y en inglés
+            // Mapeo de columnas
             productos.push({
                 id: producto.id,
                 nombre: producto.name,
@@ -215,7 +422,7 @@
                 moneda: producto.currency,
                 categoria: producto.category, 
                 descripcion: producto.description || '', 
-                imagenUrl: producto.image_url || '' // Mapeo de image_url
+                imagenUrl: producto.image_url || '' 
             });
         }
     }
@@ -295,7 +502,7 @@
                 `;
             } else {
                 controlesHTML = `<button class="btn-add" onclick="cambiarCantidad('${id}', 1)">➕ Añadir</button>`;
-            }
+            }<br>
 
             // Renderiza el ítem con imagen (si la URL existe)
             const imagenTag = producto.imagenUrl ? `<img src="${producto.imagenUrl}" alt="${producto.nombre}" class="item-thumb">` : '';
@@ -432,7 +639,7 @@
             return;
         }
 
-        let mensaje = `¡Hola! Me gustaría hacer un pedido desde el menú *MisVentas AntonioItriago*.\n\n`; // Título actualizado en mensaje
+        let mensaje = `¡Hola! Me gustaría hacer un pedido desde el menú *MisVentas AntonioItriago*.\n\n`;
         let totalUSD = 0;
         
         mensaje += `*🛒 Mi Pedido:*\n`;
