@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú MisVentas AntonioItriago</title> <style>
-        /* ==================================== */
-        /* ESTILOS CSS BASE */
-        /* ==================================== */
+    <title>Menú MisVentas AntonioItriago</title>
+    <style>
+        /* [Se omite el CSS por brevedad] */
         body { 
             font-family: 'Arial', sans-serif; 
-            /* --- FONDO DE PANTALLA (Actualiza esta línea con tu imagen) --- */
             background-image: url('fondo_carbon.jpg'); 
             background-size: cover; 
             background-attachment: fixed; 
@@ -19,218 +17,38 @@
             padding: 20px; 
             color: #333;
         }
-        .main-container {
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        h1, h2 { 
-            text-align: center; 
-            color: #d9534f;
-            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
-        }
-        
-        /* --- ESTILOS DEL ENCABEZADO Y LOGO --- */
-        .brand-header {
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            margin-bottom: 20px; 
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 10px;
-            border-radius: 10px;
-        }
-        .brand-logo {
-            height: 50px; 
-            margin-right: 10px; 
-            vertical-align: middle; 
-        }
-        .brand-name {
-            font-size: 1.5em; /* Ajustado para el nombre largo */
-            font-weight: bold;
-            color: #d9534f; 
-            margin: 0; 
-            text-align: center;
-        }
-        /* Estilos de Carrito en el Encabezado */
-        .header-carrito { 
-            display: flex; 
-            justify-content: flex-end; 
-            align-items: center; 
-            padding: 10px 0; 
-            font-weight: bold;
-        }
-        #contador-carrito { 
-            background: #d9534f; 
-            color: white; 
-            border-radius: 50%; 
-            padding: 4px 8px; 
-            font-weight: bold; 
-            font-size: 12px; 
-            margin-left: 5px; 
-        }
-
-        /* --- ESTILOS DEL CARRUSEL DE CATEGORÍAS --- */
-        #carrusel-categorias, #detalle-carrito {
-            background-color: rgba(255, 255, 255, 0.95); 
-            border-radius: 8px;
-            padding: 15px; 
-            margin-top: 15px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            min-height: 200px;
-        }
-        .categoria-pagina {
-            display: none;
-            width: 100%;
-        }
-        .categoria-pagina.activa {
-            display: block;
-        }
-        .categoria-pagina h3 {
-            text-align: center;
-            color: #333;
-            border-bottom: 2px solid #ffc107;
-            padding-bottom: 5px;
-            margin: 0 0 15px 0;
-            font-size: 1.5em;
-        }
-        
-        /* Controles de navegación del carrusel de categorías */
-        .nav-categoria-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.6);
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            cursor: pointer;
-            z-index: 20;
-            font-size: 18px;
-            border-radius: 5px;
-            transition: background-color 0.2s;
-        }
-        .nav-categoria-btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
+        .main-container { max-width: 500px; margin: 0 auto; }
+        h1, h2 { text-align: center; color: #d9534f; text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8); }
+        .brand-header { display: flex; align-items: center; justify-content: center; margin-bottom: 20px; background-color: rgba(255, 255, 255, 0.9); padding: 10px; border-radius: 10px; }
+        .brand-logo { height: 50px; margin-right: 10px; vertical-align: middle; }
+        .brand-name { font-size: 1.5em; font-weight: bold; color: #d9534f; margin: 0; text-align: center; }
+        .header-carrito { display: flex; justify-content: flex-end; align-items: center; padding: 10px 0; font-weight: bold; }
+        #contador-carrito { background: #d9534f; color: white; border-radius: 50%; padding: 4px 8px; font-weight: bold; font-size: 12px; margin-left: 5px; }
+        #carrusel-categorias, #detalle-carrito { background-color: rgba(255, 255, 255, 0.95); border-radius: 8px; padding: 15px; margin-top: 15px; position: relative; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.2); min-height: 200px; }
+        .categoria-pagina { display: none; width: 100%; }
+        .categoria-pagina.activa { display: block; }
+        .categoria-pagina h3 { text-align: center; color: #333; border-bottom: 2px solid #ffc107; padding-bottom: 5px; margin: 0 0 15px 0; font-size: 1.5em; }
+        .nav-categoria-btn { position: absolute; top: 50%; transform: translateY(-50%); background-color: rgba(0, 0, 0, 0.6); color: white; border: none; padding: 8px 12px; cursor: pointer; z-index: 20; font-size: 18px; border-radius: 5px; transition: background-color 0.2s; }
+        .nav-categoria-btn:hover { background-color: rgba(0, 0, 0, 0.8); }
         #prevCategoriaBtn { left: 5px; }
         #nextCategoriaBtn { right: 5px; }
-        #carrusel-categorias.loading-state {
-            text-align: center;
-            padding: 50px;
-            font-size: 1.2em;
-            color: #666;
-        }
-
-        /* --- ESTILOS DEL MENÚ ITEM CON IMAGEN --- */
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px dashed #eee;
-        }
-        .menu-item:last-child {
-            border-bottom: none;
-        }
-        .menu-item-info {
-            flex-grow: 1;
-            padding-right: 10px;
-            display: flex;
-            align-items: center;
-        }
-        .item-thumb {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 6px;
-            margin-right: 10px;
-            border: 1px solid #ddd;
-        }
-        .item-text {
-            flex-grow: 1;
-        }
-        .item-text strong {
-            display: block;
-            font-size: 1.1em;
-            color: #d9534f;
-        }
-        .item-text span {
-            font-size: 0.9em;
-            color: #666;
-        }
-        
-        /* Controles de cantidad (Añadir/Quitar) */
-        .item-carrito-controls {
-             display: flex; 
-             align-items: center;
-             min-width: 100px;
-        }
-        .item-carrito-controls button {
-            background-color: #d9534f;
-            color: white;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 0 5px;
-            font-weight: bold;
-        }
-        .item-carrito-controls span {
-            font-weight: bold;
-            padding: 0 5px;
-            min-width: 15px;
-            text-align: center;
-        }
-        /* Botón Añadir para ítems sin cantidad */
-        .btn-add {
-            background-color: #5cb85c !important; 
-            padding: 8px 12px !important;
-            border-radius: 4px !important;
-            width: auto !important;
-            height: auto !important;
-            font-size: 1em !important;
-            margin: 0;
-        }
-
-        /* --- VISTA DEL CARRO --- */
+        #carrusel-categorias.loading-state { text-align: center; padding: 50px; font-size: 1.2em; color: #666; }
+        .menu-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px dashed #eee; }
+        .menu-item:last-child { border-bottom: none; }
+        .menu-item-info { flex-grow: 1; padding-right: 10px; display: flex; align-items: center; }
+        .item-thumb { width: 50px; height: 50px; object-fit: cover; border-radius: 6px; margin-right: 10px; border: 1px solid #ddd; }
+        .item-text { flex-grow: 1; }
+        .item-text strong { display: block; font-size: 1.1em; color: #d9534f; }
+        .item-text span { font-size: 0.9em; color: #666; }
+        .item-carrito-controls { display: flex; align-items: center; min-width: 100px; }
+        .item-carrito-controls button { background-color: #d9534f; color: white; border: none; width: 30px; height: 30px; border-radius: 4px; cursor: pointer; margin: 0 5px; font-weight: bold; }
+        .item-carrito-controls span { font-weight: bold; padding: 0 5px; min-width: 15px; text-align: center; }
+        .btn-add { background-color: #5cb85c !important; padding: 8px 12px !important; border-radius: 4px !important; width: auto !important; height: auto !important; font-size: 1em !important; margin: 0; }
         #detalle-carrito ul { list-style: none; padding: 0; }
-        .item-carrito { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 10px; 
-            border-bottom: 1px dotted #eee; 
-            padding-bottom: 5px; 
-        }
-        
-        #btn-finalizar {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background-color: #25d366; 
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.2s;
-        }
-        #btn-finalizar:hover {
-            background-color: #128c7e;
-        }
-        
-        .footer-note {
-            text-align: center; 
-            font-size: 0.8em; 
-            margin-top: 15px;
-            color: white;
-            text-shadow: 1px 1px 2px #333;
-        }
+        .item-carrito { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px dotted #eee; padding-bottom: 5px; }
+        #btn-finalizar { display: block; width: 100%; padding: 15px; background-color: #25d366; color: white; border: none; border-radius: 5px; font-size: 1.1em; font-weight: bold; cursor: pointer; margin-top: 20px; transition: background-color 0.2s; }
+        #btn-finalizar:hover { background-color: #128c7e; }
+        .footer-note { text-align: center; font-size: 0.8em; margin-top: 15px; color: white; text-shadow: 1px 1px 2px #333; }
     </style>
 </head>
 <body>
@@ -242,7 +60,9 @@
     </div>
     
     <div class="brand-header">
-        <img src="logo.png" alt="Logo MisVentas AntonioItriago" class="brand-logo"> <h1 class="brand-name">MisVentas AntonioItriago</h1> </div>
+        <img src="logo.png" alt="Logo MisVentas AntonioItriago" class="brand-logo">
+        <h1 class="brand-name">MisVentas AntonioItriago</h1>
+    </div>
 
     <h2>Menú de Promociones</h2>
     <div id="carrusel-categorias" class="loading-state">
@@ -271,7 +91,7 @@
 
 <script>
     // URL PÚBLICA DE TU GOOGLE SHEET EXPORTADA COMO CSV
-    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS4DAjhLvrtiYeslzX83GgaowPq8_aiR2u8F_24ST8SWxDSG6pfRKJmS-WRAnsH_CRBInldl7tLS8vj/pub?gid=0&single=true&output=csv'; // ¡URL DEL CSV ACTUALIZADA!
+    const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS4DAjhLvrtiYeslzX83GgaowPq8_aiR2u8F_24ST8SWxDSG6pfRKJmS-WRAnsH_CRBInldl7tLS8vj/pub?gid=0&single=true&output=csv';
     
     // API ACTUALIZADA: para obtener la tasa BCV en tiempo real (dolarapi.com)
     const BCV_API_URL = 'https://ve.dolarapi.com/v1/dolar';
@@ -365,11 +185,11 @@
         const lineas = csv.trim().split('\n');
         if (lineas.length === 0) return;
 
-        // Limpiamos los encabezados de retornos de carro y los ponemos en mayúsculas
-        const encabezados = lineas[0].replace(/\r/g, '').split(CSV_SEPARATOR).map(h => h.trim().toUpperCase());
+        // Limpiamos los encabezados y los convertimos a minúsculas
+        const encabezados = lineas[0].replace(/\r/g, '').split(CSV_SEPARATOR).map(h => h.trim().toLowerCase()); // <--- ¡CAMBIO AQUÍ!
         
-        // Encontramos el índice de la columna PRECIO para aplicar la corrección de decimales
-        const precioIndex = encabezados.indexOf('PRECIO');
+        // Encontramos el índice de la columna 'price' para aplicar la corrección de decimales
+        const precioIndex = encabezados.indexOf('price'); // <--- ¡CAMBIO AQUÍ!
 
         for (let i = 1; i < lineas.length; i++) {
             const valores = lineas[i].replace(/\r/g, '').split(CSV_SEPARATOR).map(v => v.trim());
@@ -381,21 +201,21 @@
             }
             
             // --- CORRECCIÓN DE DECIMALES (COMAS A PUNTOS) ---
-            let precioProcesado = producto.PRECIO;
+            let precioProcesado = producto.price; // <--- ¡CAMBIO AQUÍ!
             if (precioIndex !== -1 && valores[precioIndex] && valores[precioIndex].includes(',')) {
                 precioProcesado = valores[precioIndex].replace(',', '.');
             }
             // -----------------------------------------------
             
-            // Mapeo de columnas
+            // Mapeo de columnas usando los nombres en minúsculas y en inglés
             productos.push({
-                id: producto.ID,
-                nombre: producto.NOMBRE,
-                precio: parseFloat(precioProcesado) || 0, // Usamos el precio procesado
-                moneda: producto.MONEDA,
-                categoria: producto.CATEGORIA, 
-                descripcion: producto.DESCRIPCION || '', 
-                imagenUrl: producto.IMAGENURL || '' 
+                id: producto.id,
+                nombre: producto.name,
+                precio: parseFloat(precioProcesado) || 0,
+                moneda: producto.currency,
+                categoria: producto.category, 
+                descripcion: producto.description || '', 
+                imagenUrl: producto.image_url || '' // Mapeo de image_url
             });
         }
     }
@@ -448,7 +268,7 @@
         carruselContenedor.innerHTML = '';
         
         if (categoriasOrdenadas.length === 0) {
-            carruselContenedor.innerHTML = 'No hay categorías para mostrar. Verifica la columna "CATEGORIA" en tu hoja.';
+            carruselContenedor.innerHTML = 'No hay categorías para mostrar. Verifica la columna "category" en tu hoja.';
             return;
         }
 
